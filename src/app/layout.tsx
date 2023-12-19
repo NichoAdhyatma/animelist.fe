@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import NavbarComponent from "./components/Navbar";
-import { Suspense } from "react";
-import Loading from "./components/Loading";
+import NavbarComponent from "../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +22,7 @@ export default function RootLayout({
         <Providers>
           <NavbarComponent />
 
-          <div className="max-w-7xl w-full mx-auto">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </div>
+          <div className="max-w-7xl w-full mx-auto">{children}</div>
         </Providers>
       </body>
     </html>
