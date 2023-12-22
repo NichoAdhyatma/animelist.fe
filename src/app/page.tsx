@@ -1,32 +1,23 @@
-import CardAnime from "@/components/CardAnime";
-import CardGridLayout from "@/layout/CardGridLayout";
-import { AnimeType } from "@/type/anime";
+import { getAnime } from "@/api/getAnime";
+import AnimeList from "@/components/AnimeList";
+import Header from "@/components/AnimeList/Header";
 
-const getAnimes = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`
-  );
-
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  return response.json();
-};
-
-const Home = async () => {
-  const animes = await getAnimes();
+const Page = async () => {
+  const topAnime = await getAnime("/top/anime?limit=8");
 
   return (
-    <CardGridLayout>
-      {animes.data.map((anime: AnimeType) => (
-        <CardAnime
-          key={anime.mal_id}
-          id={anime.mal_id}
-          title={anime.title}
-          src={anime.images.webp.large_image_url}
-        />
-      ))}
-    </CardGridLayout>
+    <>
+      <section>
+        <Header title="Top Anime" />
+        <AnimeList api={topAnime} />
+      </section>
+
+      <section className="mt-6">
+        <Header title="New Anime" linkLabel="See More" />
+        <AnimeList api={topAnime} />
+      </section>
+    </>
   );
 };
 
-export default Home;
+export default Page;

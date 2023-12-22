@@ -1,5 +1,5 @@
-import SkeletonComponent from "@/components/Skeleton";
-import CardGridLayout from "@/layout/CardGridLayout";
+import SkeletonComponent from "@/components/AnimeList/Skeleton";
+import CardGridLayout from "@/components/AnimeList/CardGridLayout";
 
 export default function Loading() {
   return (
