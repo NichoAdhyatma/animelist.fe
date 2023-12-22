@@ -1,7 +1,7 @@
 import { AnimeType } from "@/type/anime";
 import React from "react";
-import CardAnime from "./CardAnime";
-import CardGridLayout from "./CardGridLayout";
+import CardAnime from "../CardAnime";
+import CardGridLayout from "../CardGridLayout";
 
 export default function AnimeList({ api }: { api: any }) {
   return (

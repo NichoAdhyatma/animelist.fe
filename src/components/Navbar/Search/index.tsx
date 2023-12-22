@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Autocomplete,
   AutocompleteItem,
@@ -18,10 +16,12 @@ export default function SearchComponent() {
 
   const animeList = useAsyncList<AnimeType>({
     async load({ signal, filterText }) {
-      let res = await getAnime(
-        filterText ? `/anime?q=${filterText}` : `/top/anime?limit=10`,
-        { signal }
-      );
+      if (filterText === "")
+        return {
+          items: [],
+        };
+
+      let res = await getAnime(`/anime?q=${filterText}`, { signal });
 
       return {
         items: res.data,
@@ -30,7 +30,7 @@ export default function SearchComponent() {
   });
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && animeList.filterText !== "") {
       event.preventDefault();
       router.push(`/search/${animeList.filterText}`);
     }
@@ -38,8 +38,6 @@ export default function SearchComponent() {
 
   return (
     <Autocomplete
-      allowsCustomValue={true}
-      isDisabled={animeList.items.length === 0}
       classNames={{
         base: "max-w-lg w-full",
         listboxWrapper: "max-h-[320px]",
@@ -86,6 +84,7 @@ export default function SearchComponent() {
       isLoading={animeList.isLoading}
       onInputChange={animeList.setFilterText}
       onKeyDown={handleKeyDown}
+      menuTrigger="input"
     >
       {(item) => (
         <AutocompleteItem

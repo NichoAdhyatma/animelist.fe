@@ -13,7 +13,11 @@ export default function Header({
   return (
     <div className="flex justify-between items-center w-full my-2">
       <h1 className="text-2xl font-bold">{title}</h1>
-      <Link showAnchorIcon isBlock href={href ?? "/"}>{linkLabel ?? "See All"}</Link>
+      {linkLabel && (
+        <Link showAnchorIcon isBlock href={href}>
+          {linkLabel}
+        </Link>
+      )}
     </div>
   );
 }
