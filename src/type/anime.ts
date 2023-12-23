@@ -10,5 +10,7 @@ export type AnimeType = {
       image_url: string,
       large_image_url: string
     }
-  }
+  },
+  type: string,
+  year: number,
 }

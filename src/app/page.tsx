@@ -8,13 +8,13 @@ const Page = async () => {
   return (
     <>
       <section>
-        <Header title="Top Anime" linkLabel="See All" />
-        <AnimeList api={topAnime} />
+        <Header title="Top Anime" linkLabel="See All" href="/topAnime" />
+        <AnimeList api={topAnime.data} />
       </section>
 
       <section className="mt-6">
         <Header title="New Anime" linkLabel="See More" />
-        <AnimeList api={topAnime} />
+        <AnimeList api={topAnime.data} />
       </section>
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Skeleton } from "@nextui-org/react";
 
-export default function SkeletonComponent() {
+export default function SkeletonCard() {
   return (
     <Card
       className="space-y-5 p-4 flex flex-col justify-between h-full"

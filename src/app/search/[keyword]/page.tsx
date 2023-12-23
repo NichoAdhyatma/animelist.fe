@@ -5,13 +5,15 @@ import Header from "@/components/Header";
 const Page = async ({ params }: { params: { keyword: string } }) => {
   const { keyword } = params;
 
-  const searchAnime = await getAnime(`/anime?q=${keyword}`);
+  const decodedKeyword = decodeURI(keyword);
+
+  const searchAnime = await getAnime(`/anime?q=${decodedKeyword}`);
 
   return (
     <>
       <section>
-        <Header title={`Search result for ${keyword}`} />
-        <AnimeList api={searchAnime} />
+        <Header title={`Search result for ${decodedKeyword}`} />
+        <AnimeList api={searchAnime.data} />
       </section>
     </>
   );

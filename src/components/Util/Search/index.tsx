@@ -8,7 +8,7 @@ import SearchIcon from "./SearchIcon";
 import { useAsyncList } from "@react-stately/data";
 import { AnimeType } from "@/type/anime";
 import { getAnime } from "@/api/getAnime";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { KeyboardEvent } from "react";
 
 export default function SearchComponent() {
@@ -103,7 +103,9 @@ export default function SearchComponent() {
               />
               <div className="flex flex-col">
                 <span className="text-small">{item.title}</span>
-                <span className="text-tiny text-default-400">{item.title}</span>
+                <span className="text-tiny text-default-400">
+                  {item.type} {item.year}
+                </span>
               </div>
             </div>
           </div>

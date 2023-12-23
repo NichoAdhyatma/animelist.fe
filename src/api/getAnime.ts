@@ -1,10 +1,20 @@
-export const getAnime = async (path: string, { signal }: { signal?: AbortSignal } = {}) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`,
-    { cache: "force-cache", signal }
-  );
+import { AnimeResponse } from "@/type/animeResponse";
 
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+export const getAnime = async (path: string, { signal }: { signal?: AbortSignal } = {}): Promise<AnimeResponse> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`,
+      { cache: "force-cache", signal }
+    );
 
-  return response.json();
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const json = await response.json() as AnimeResponse;
+    return json;
+  } catch (error) {
+    console.error("Error fetching anime:", error);
+    throw error;
+  }
 };
