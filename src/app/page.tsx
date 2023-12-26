@@ -1,9 +1,13 @@
-import { getAnime } from "@/api/getAnime";
+import { get } from "@/api/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
+import { AnimeResponse } from "@/type/animeResponse";
+const { exec } = require('child_process');
+
+
 
 const Page = async () => {
-  const topAnime = await getAnime("/top/anime?limit=8");
+  const topAnime = await get<AnimeResponse>("/top/anime?limit=8");
 
   return (
     <>

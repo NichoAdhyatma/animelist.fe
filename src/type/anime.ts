@@ -13,4 +13,12 @@ export type AnimeType = {
   },
   type: string,
   year: number,
+  synopsis: string,
+  score: number,
+  rank: number,
+  episodes: number,
+  members: number,
+  trailer: {
+    youtube_id: string
+  }
 }

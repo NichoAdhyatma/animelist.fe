@@ -1,15 +1,12 @@
-import {
-  Autocomplete,
-  AutocompleteItem,
-  Avatar,
-  Link,
-} from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
 import SearchIcon from "./SearchIcon";
-import { useAsyncList } from "@react-stately/data";
 import { AnimeType } from "@/type/anime";
-import { getAnime } from "@/api/getAnime";
+import { get } from "@/api/fetcher";
 import { useRouter } from "next-nprogress-bar";
 import { KeyboardEvent } from "react";
+import { AnimeResponse } from "@/type/animeResponse";
+import { useAsyncList } from "react-stately";
+import { generateRandomId } from "@/helper/randomId";
 
 export default function SearchComponent() {
   const router = useRouter();
@@ -21,10 +18,12 @@ export default function SearchComponent() {
           items: [],
         };
 
-      let res = await getAnime(`/anime?q=${filterText}`, { signal });
+      let { data } = await get<AnimeResponse>(`/anime?q=${filterText}`, {
+        signal: signal,
+      });
 
       return {
-        items: res.data,
+        items: data,
       };
     },
   });
@@ -88,10 +87,9 @@ export default function SearchComponent() {
     >
       {(item) => (
         <AutocompleteItem
-          key={item.mal_id}
+          key={generateRandomId(8)}
           textValue={item.title}
-          as={Link}
-          href={`/${item.mal_id}`}
+          onPress={() => router.push(`/anime/${item.mal_id}`)}
         >
           <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">

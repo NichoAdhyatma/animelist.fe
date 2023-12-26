@@ -1,11 +1,11 @@
 "use client";
 
-import { getAnime } from "@/api/getAnime";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
 import { Pagination } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { AnimeResponse } from "@/type/animeResponse";
+import { get } from "@/api/fetcher";
 
 export default function Page() {
   const [page, setPage] = useState(1);
@@ -14,8 +14,8 @@ export default function Page() {
   );
 
   const fetchTopAnime = async () => {
-    const topAnime = await getAnime(`/top/anime?page=${page}`);
-    setTopAnime(topAnime as AnimeResponse);
+    const topAnime = await get<AnimeResponse>(`/top/anime?page=${page}`);
+    setTopAnime(topAnime);
   };
 
   useEffect(() => {

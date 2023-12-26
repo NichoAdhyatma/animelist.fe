@@ -1,13 +1,18 @@
-import { getAnime } from "@/api/getAnime";
+import { get } from "@/api/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
+import { AnimeResponse } from "@/type/animeResponse";
 
-const Page = async ({ params }: { params: { keyword: string } }) => {
-  const { keyword } = params;
-
+const Page = async ({
+  params: { keyword },
+}: {
+  params: { keyword: string };
+}) => {
   const decodedKeyword = decodeURI(keyword);
 
-  const searchAnime = await getAnime(`/anime?q=${decodedKeyword}`);
+  const searchAnime = await get<AnimeResponse>(
+    `/anime?q=${decodedKeyword}`
+  );
 
   return (
     <>
