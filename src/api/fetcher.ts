@@ -1,3 +1,5 @@
+import { RecommendationAnimeResponse } from "@/type/animeResponse";
+
 export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } = {}): Promise<T> => {
   try {
     const response = await fetch(
@@ -18,3 +20,9 @@ export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } 
     throw error;
   }
 };
+
+export const getNestedAnimeResponse = async (path: string) => {
+  const response = await get<RecommendationAnimeResponse>(path);
+
+  return response.data.flatMap(item => item.entry);
+}

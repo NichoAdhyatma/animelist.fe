@@ -1,13 +1,13 @@
-import { get } from "@/api/fetcher";
+import { get, getNestedAnimeResponse } from "@/api/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
 import { AnimeResponse } from "@/type/animeResponse";
-const { exec } = require('child_process');
-
-
 
 const Page = async () => {
   const topAnime = await get<AnimeResponse>("/top/anime?limit=8");
+  const recomendationAnime = await getNestedAnimeResponse(
+    "/recommendations/anime"
+  );
 
   return (
     <>
@@ -16,9 +16,9 @@ const Page = async () => {
         <AnimeList api={topAnime.data} />
       </section>
 
-      <section className="mt-6">
-        <Header title="New Anime" linkLabel="See More" />
-        <AnimeList api={topAnime.data} />
+      <section className="mt-10">
+        <Header title="Rekomendasi Anime" />
+        <AnimeList api={recomendationAnime.slice(0, 4)} />
       </section>
     </>
   );

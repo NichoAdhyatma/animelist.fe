@@ -1,5 +1,6 @@
 export type AnimeType = {
   mal_id: number,
+  url: string,
   title: string,
   images: {
     jpg: {
