@@ -47,13 +47,14 @@ export default async function Page({
           className="w-full h-full object-cover"
           alt="Anime Image"
         />
+
         <div className="max-w-4xl w-full">
           <p className=" text-sm">{data.synopsis} </p>
         </div>
-      </div>
-
-      <div>
-        <VideoPlayer videoId={data.trailer.youtube_id}/>
+        
+        <div>
+          <VideoPlayer videoId={data.trailer.youtube_id} />
+        </div>
       </div>
     </>
   );

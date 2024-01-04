@@ -1,12 +1,17 @@
 import { get, getNestedAnimeResponse } from "@/api/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
+import { randomizeData } from "@/helper/randomizeData";
 import { AnimeResponse } from "@/type/animeResponse";
 
 const Page = async () => {
   const topAnime = await get<AnimeResponse>("/top/anime?limit=8");
+
   const recomendationAnime = await getNestedAnimeResponse(
-    "/recommendations/anime"
+    "/recommendations/anime",
+    {
+      objectProperty: "entry",
+    }
   );
 
   return (
@@ -18,7 +23,7 @@ const Page = async () => {
 
       <section className="mt-10">
         <Header title="Rekomendasi Anime" />
-        <AnimeList api={recomendationAnime.slice(0, 4)} />
+        <AnimeList api={randomizeData(recomendationAnime, 4)} />
       </section>
     </>
   );

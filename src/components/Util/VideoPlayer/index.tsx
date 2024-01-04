@@ -10,14 +10,13 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { IoCloseCircle } from "react-icons/io5";
 
 export default function VideoPlayer({ videoId }: { videoId: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="fixed bottom-5 right-5">
-      <Button color="warning" onPress={onOpen}>Tonton Trailer</Button>
+      <Button color="warning" variant="faded" onPress={onOpen}>Tonton Trailer</Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

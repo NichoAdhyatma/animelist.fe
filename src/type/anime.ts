@@ -1,3 +1,5 @@
+import { UserType } from "./user"
+
 export type AnimeType = {
   mal_id: number,
   url: string,
@@ -22,4 +24,11 @@ export type AnimeType = {
   trailer: {
     youtube_id: string
   }
+}
+
+export type RecommendationAnimeType = {
+  mal_id: string,
+  entry: AnimeType[],
+  content: string,
+  user: UserType
 }

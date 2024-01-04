@@ -8,9 +8,7 @@ export function generateRandomId(length = 8) {
   }
 
   const timestamp = new Date().getTime();
-  randomId += timestamp.toString();
-
-  console.log(randomId);
+  randomId += timestamp.toString() + (Math.random() * length).toString();
 
   return randomId;
 }

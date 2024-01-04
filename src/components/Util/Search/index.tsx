@@ -29,7 +29,7 @@ export default function SearchComponent() {
   });
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Enter" && animeList.filterText !== "") {
+    if (event.key === "Enter" && animeList.filterText.trim() !== "") {
       event.preventDefault();
       router.push(`/search/${animeList.filterText}`);
     }

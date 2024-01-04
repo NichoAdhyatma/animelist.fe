@@ -1,3 +1,4 @@
+import { AnimeType, RecommendationAnimeType } from "@/type/anime";
 import { RecommendationAnimeResponse } from "@/type/animeResponse";
 
 export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } = {}): Promise<T> => {
@@ -21,8 +22,14 @@ export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } 
   }
 };
 
-export const getNestedAnimeResponse = async (path: string) => {
+export const getNestedAnimeResponse = async (
+  path: string,
+
+  { objectProperty }: { objectProperty: keyof RecommendationAnimeType }
+
+): Promise<AnimeType[]> => {
+
   const response = await get<RecommendationAnimeResponse>(path);
 
-  return response.data.flatMap(item => item.entry);
+  return response.data.flatMap((item: RecommendationAnimeType) => item[objectProperty] as AnimeType[]);
 }
