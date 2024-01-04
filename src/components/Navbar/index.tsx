@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import SearchComponent from "../Util/Search";
 
-export default function NavbarComponent() {
+export default function NavbarComponent({children} : {children: React.ReactNode}) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
@@ -29,9 +29,13 @@ export default function NavbarComponent() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex" justify="end">
-        <NavbarItem>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
           <SearchComponent />
+        </NavbarItem>
+
+        <NavbarItem>
+          {children}
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>

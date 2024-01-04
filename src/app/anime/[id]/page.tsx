@@ -1,4 +1,4 @@
-import { get } from "@/api/fetcher";
+import { get } from "@/libs/fetcher";
 import { SingleAnimeResponse } from "@/type/animeResponse";
 import { Chip, Image, ScrollShadow } from "@nextui-org/react";
 import React from "react";
@@ -51,7 +51,7 @@ export default async function Page({
         <div className="max-w-4xl w-full">
           <p className=" text-sm">{data.synopsis} </p>
         </div>
-        
+
         <div>
           <VideoPlayer videoId={data.trailer.youtube_id} />
         </div>

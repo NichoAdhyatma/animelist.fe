@@ -7,8 +7,10 @@ export function generateRandomId(length = 8) {
     randomId += characters.charAt(randomIndex);
   }
 
-  const timestamp = new Date().getTime();
-  randomId += timestamp.toString() + (Math.random() * length).toString();
+  const timestamp = Math.floor(new Date().getTime() * Math.random());
+  randomId += timestamp.toString();
+
+  console.log(randomId);
 
   return randomId;
 }

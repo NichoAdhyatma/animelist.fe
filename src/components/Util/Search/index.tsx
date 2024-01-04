@@ -1,7 +1,7 @@
 import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
 import SearchIcon from "./SearchIcon";
 import { AnimeType } from "@/type/anime";
-import { get } from "@/api/fetcher";
+import { get } from "@/libs/fetcher";
 import { useRouter } from "next-nprogress-bar";
 import { KeyboardEvent } from "react";
 import { AnimeResponse } from "@/type/animeResponse";

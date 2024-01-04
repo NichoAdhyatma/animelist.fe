@@ -1,4 +1,4 @@
-import { get, getNestedAnimeResponse } from "@/api/fetcher";
+import { get, getNestedAnimeResponse } from "@/libs/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
 import { randomizeData } from "@/helper/randomizeData";
