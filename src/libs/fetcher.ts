@@ -1,5 +1,6 @@
 import { AnimeType, RecommendationAnimeType } from "@/type/anime";
 import { RecommendationAnimeResponse } from "@/type/animeResponse";
+import { redirect } from "next/navigation";
 
 export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } = {}): Promise<T> => {
   try {
@@ -9,7 +10,7 @@ export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } 
     );
 
     if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
+      redirect("/");
     }
 
     const responseData = await response.json() as T;

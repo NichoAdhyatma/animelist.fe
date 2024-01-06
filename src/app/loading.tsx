@@ -1,17 +1,9 @@
-import SkeletonComponent from "@/components/Util/SkeletonCard";
-import CardGridLayout from "@/components/CardGridLayout";
+import { CircularProgress } from "@nextui-org/react";
 
 export default function Loading() {
   return (
-    <CardGridLayout>
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-      <SkeletonComponent />
-    </CardGridLayout>
+    <div className="flex justify-center items-center">
+      <CircularProgress size="lg" color="primary" />
+    </div>
   );
 }

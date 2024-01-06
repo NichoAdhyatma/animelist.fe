@@ -1,6 +1,7 @@
 "use client";
 
-import YouTube, { YouTubeEvent } from "react-youtube";
+import YouTube, { YouTubeProps } from "react-youtube";
+import { FaPlay } from "react-icons/fa";
 import {
   Modal,
   ModalContent,
@@ -14,9 +15,29 @@ import {
 export default function VideoPlayer({ videoId }: { videoId: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const opts: YouTubeProps["opts"] = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+
+  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
+    event.target.pauseVideo();
+  };
+
   return (
-    <div className="fixed bottom-5 right-5">
-      <Button color="warning" variant="faded" onPress={onOpen}>Tonton Trailer</Button>
+    <div className="fixed bottom-5 right-5 lg:static">
+      <Button
+        color="warning"
+        variant="solid"
+        onPress={onOpen}
+        startContent={<FaPlay />}
+        className="font-semibold"
+      >
+        Tonton Trailer
+      </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -28,12 +49,11 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
             <>
               <ModalHeader className="flex flex-col gap-1">Trailer</ModalHeader>
               <ModalBody>
-                <div className="w-full flex justify-center">
+                <div className="flex justify-center">
                   <YouTube
+                    opts={opts}
                     videoId={videoId}
-                    onReady={(e: YouTubeEvent<any>) => {
-                      e.target.pauseVideo();
-                    }}
+                    onReady={onPlayerReady}
                   />
                 </div>
               </ModalBody>

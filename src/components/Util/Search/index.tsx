@@ -76,7 +76,7 @@ export default function SearchComponent() {
       startContent={
         <SearchIcon className="text-default-400" strokeWidth={2.5} size={20} />
       }
-      radius="full"
+      radius="lg"
       variant="bordered"
       items={animeList.items}
       inputValue={animeList.filterText}

@@ -2,6 +2,7 @@ import { get } from "@/libs/fetcher";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/Header";
 import { AnimeResponse } from "@/type/animeResponse";
+import BackButton from "@/components/Util/BackButton";
 
 const Page = async ({
   params: { keyword },
@@ -14,6 +15,7 @@ const Page = async ({
 
   return (
     <>
+      <BackButton />
       <section>
         <Header title={`Search result for ${decodedKeyword}`} />
         <AnimeList api={searchAnime.data} />

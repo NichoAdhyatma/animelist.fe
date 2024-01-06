@@ -19,10 +19,15 @@ export default function CardAnime({
       href={`/anime/${id}`}
       isPressable
     >
-      <Image alt={title} className="object-cover h-auto w-full" src={src} />
+      <Image
+        removeWrapper
+        alt={title}
+        className="z-0 w-full h-full object-cover"
+        src={src}
+      />
 
-      <CardFooter className="before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <p className="text-tiny sm:text-medium text-center text-white p-2 w-full">
+      <CardFooter className="before:bg-white/10 bg-black/50 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+        <p className="text-tiny sm:text-sm text-center text-white w-full">
           {title}
         </p>
       </CardFooter>

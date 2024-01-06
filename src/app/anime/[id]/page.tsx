@@ -6,6 +6,7 @@ import { TiStarFullOutline } from "react-icons/ti";
 import { FaRankingStar, FaList } from "react-icons/fa6";
 import { BsFillPeopleFill } from "react-icons/bs";
 import VideoPlayer from "@/components/Util/VideoPlayer";
+import BackButton from "@/components/Util/BackButton";
 
 export default async function Page({
   params: { id },
@@ -16,6 +17,8 @@ export default async function Page({
 
   return (
     <>
+      <BackButton />
+
       <p className="my-4 text-2xl font-semibold">{data.title}</p>
 
       <ScrollShadow
@@ -41,18 +44,16 @@ export default async function Page({
         </Chip>
       </ScrollShadow>
 
-      <div className="flex gap-4 items-start flex-wrap sm:flex-nowrap justify-center lg:justify-start">
+      <div className="flex gap-4 items-start flex-wrap sm:flex-nowrap justify-center lg:justify-start p-2">
         <Image
           src={data.images.webp.image_url}
-          className="w-full h-full object-cover"
+          className="w-full object-cover"
           alt="Anime Image"
         />
 
-        <div className="max-w-4xl w-full">
-          <p className=" text-sm">{data.synopsis} </p>
-        </div>
+        <div className="max-w-4xl flex flex-col justify-center gap-4 w-full">
+          <p className="text-tiny sm:text-sm">{data.synopsis} </p>
 
-        <div>
           <VideoPlayer videoId={data.trailer.youtube_id} />
         </div>
       </div>
