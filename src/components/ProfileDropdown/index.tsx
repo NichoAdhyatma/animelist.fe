@@ -9,6 +9,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 export default function ProfileDropdown({ user }: { user: AuthUser }) {
   const router = useRouter();
@@ -24,9 +25,12 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
-        <DropdownItem key="profile" className="h-14 gap-2">
+        <DropdownItem key="profile" className="h-14 gap-2" isReadOnly>
           <p className="font-semibold">Signed in as</p>
           <p className="font-semibold">{user.email}</p>
+        </DropdownItem>
+        <DropdownItem key="theme-switcher" isReadOnly>
+          <ThemeSwitcher />
         </DropdownItem>
         <DropdownItem
           key="dashboard"

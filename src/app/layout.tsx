@@ -24,7 +24,7 @@ export default function RootLayout({
           <NavbarComponent>
             <UserActionButton />
           </NavbarComponent>
-          
+
           <div className="max-w-7xl w-full mx-auto mt-2 p-4">{children}</div>
         </Providers>
       </body>

@@ -1,9 +1,5 @@
 import prismaSingleton from "@/libs/prisma";
 
-export async function GET() {
-  return Response.json({ data: "Collection V1 API" })
-}
-
 export async function POST(request: Request) {
   const { anime_mal_id, user_email } = await request.json()
   const data = { anime_mal_id, user_email }

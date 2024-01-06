@@ -14,7 +14,9 @@ export default async function Page() {
       />
 
       <div className="flex flex-wrap gap-4">
-        <Button as={Link} href="/user/dashboard/collection" color="primary">My Collection</Button>
+        <Button as={Link} href="/user/dashboard/collection" color="primary">
+          My Collection
+        </Button>
         <Button>My Comment</Button>
       </div>
     </div>

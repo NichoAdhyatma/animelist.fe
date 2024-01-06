@@ -10,7 +10,7 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import SearchComponent from "../Util/Search";
+import SearchComponent from "../Search";
 
 export default function NavbarComponent({children} : {children: React.ReactNode}) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

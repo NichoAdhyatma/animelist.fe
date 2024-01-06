@@ -4,8 +4,8 @@ import { Image } from "@nextui-org/react";
 import React from "react";
 import VideoPlayer from "@/components/Util/VideoPlayer";
 import BackButton from "@/components/Util/BackButton";
-import CollectionButton from "@/components/Util/CollectionButton";
-import AnimeBadges from "@/components/Util/AnimeBadges";
+import CollectionButton from "@/components/CollectionButton";
+import AnimeBadges from "@/components/AnimeBadges";
 import { authUserSession } from "@/libs/auth";
 import prismaSingleton from "@/libs/prisma";
 
