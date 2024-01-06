@@ -1,6 +1,6 @@
 import { get } from "@/libs/fetcher";
 import AnimeList from "@/components/AnimeList";
-import Header from "@/components/Header";
+import Header from "@/components/Util/Header";
 import { AnimeResponse } from "@/type/animeResponse";
 import BackButton from "@/components/Util/BackButton";
 

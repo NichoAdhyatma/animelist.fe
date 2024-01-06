@@ -30,11 +30,10 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
   return (
     <div className="fixed bottom-5 right-5 lg:static">
       <Button
-        color="warning"
+        color="danger"
         variant="solid"
         onPress={onOpen}
         startContent={<FaPlay />}
-        className="font-semibold"
       >
         Tonton Trailer
       </Button>

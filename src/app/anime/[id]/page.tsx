@@ -1,12 +1,13 @@
 import { get } from "@/libs/fetcher";
 import { SingleAnimeResponse } from "@/type/animeResponse";
-import { Chip, Image, ScrollShadow } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import React from "react";
-import { TiStarFullOutline } from "react-icons/ti";
-import { FaRankingStar, FaList } from "react-icons/fa6";
-import { BsFillPeopleFill } from "react-icons/bs";
 import VideoPlayer from "@/components/Util/VideoPlayer";
 import BackButton from "@/components/Util/BackButton";
+import CollectionButton from "@/components/Util/CollectionButton";
+import AnimeBadges from "@/components/Util/AnimeBadges";
+import { authUserSession } from "@/libs/auth";
+import prismaSingleton from "@/libs/prisma";
 
 export default async function Page({
   params: { id },
@@ -15,36 +16,31 @@ export default async function Page({
 }) {
   const { data } = await get<SingleAnimeResponse>(`/anime/${id}`);
 
+  const user = await authUserSession();
+
+  const collection = await prismaSingleton.collection.findFirst({
+    where: { user_email: user?.email ?? "", anime_mal_id: Number(id) },
+  });
+
   return (
     <>
-      <BackButton />
+      <div className="flex justify-between items-center">
+        <BackButton />
 
-      <p className="my-4 text-2xl font-semibold">{data.title}</p>
+        {user && (
+          <CollectionButton
+            anime_mal_id={data.mal_id}
+            user_email={user?.email ?? ""}
+            isCollected={Boolean(collection)}
+          />
+        )}
+      </div>
 
-      <ScrollShadow
-        orientation="horizontal"
-        size={10}
-        hideScrollBar={true}
-        className="my-4 flex items-center gap-4 overflow-x-scroll"
-      >
-        <Chip startContent={<TiStarFullOutline />} variant="faded">
-          {data.score}
-        </Chip>
+      <p className="my-4 text-2xl font-semibold text-center">{data.title}</p>
 
-        <Chip startContent={<FaList />} variant="faded">
-          {data.episodes}
-        </Chip>
+      <AnimeBadges data={data} />
 
-        <Chip startContent={<FaRankingStar />} variant="faded">
-          {data.rank}
-        </Chip>
-
-        <Chip startContent={<BsFillPeopleFill />} variant="faded">
-          {data.members}
-        </Chip>
-      </ScrollShadow>
-
-      <div className="flex gap-4 items-start flex-wrap sm:flex-nowrap justify-center lg:justify-start p-2">
+      <div className="flex gap-6 items-start flex-wrap sm:flex-nowrap justify-center lg:justify-start p-2">
         <Image
           src={data.images.webp.image_url}
           className="w-full object-cover"
