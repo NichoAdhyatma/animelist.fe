@@ -1,4 +1,3 @@
-// app/components/ThemeSwitcher.tsx
 "use client";
 
 import { Switch } from "@nextui-org/react";
@@ -26,6 +25,6 @@ export function ThemeSwitcher() {
       }}
       startContent={<MoonIcon />}
       endContent={<SunIcon />}
-    ></Switch>
+    />
   );
 }

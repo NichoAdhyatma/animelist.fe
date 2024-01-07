@@ -10,3 +10,15 @@ export async function POST(request: Request) {
 
   return Response.json({ status: 200, isCreated: true })
 }
+
+export async function DELETE(request: Request) {
+  const { id } = await request.json();
+
+  const deleteCollection = await prismaSingleton.collection.delete({ where: { id } });
+
+  if (!deleteCollection) {
+    return Response.json({ status: 500, isCreated: true })
+  }
+
+  return Response.json({ status: 200, isCreated: false })
+}

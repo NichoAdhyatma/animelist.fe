@@ -29,6 +29,7 @@ export default async function Page({
 
         {user && (
           <CollectionButton
+            collection_id={collection?.id ?? 0}
             anime_mal_id={data.mal_id}
             user_email={user?.email ?? ""}
             isCollected={Boolean(collection)}

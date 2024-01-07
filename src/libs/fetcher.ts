@@ -47,6 +47,17 @@ export const addCollectionAnime = async (
   }
 
   return await response.json() as CollectionResponse;
+}
 
+export const removeCollectionAnime = async (id: number) => {
+  const response: Response = await fetch("/api/v1/collection", { method: "DELETE", body: JSON.stringify({ id }) })
 
+  if (!response.ok) {
+    return {
+      status: response.status,
+      isCreated: true
+    }
+  }
+
+  return await response.json() as CollectionResponse;
 }
