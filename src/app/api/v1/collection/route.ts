@@ -1,10 +1,10 @@
 import prismaSingleton from "@/libs/prisma";
+import { CollectionRequest } from "@/type/collection";
 
 export async function POST(request: Request) {
-  const { anime_mal_id, user_email } = await request.json()
-  const data = { anime_mal_id, user_email }
+  const collectionRequest: CollectionRequest = await request.json()
 
-  const createCollection = await prismaSingleton.collection.create({ data })
+  const createCollection = await prismaSingleton.collection.create({ data: collectionRequest })
 
   if (!createCollection) return Response.json({ status: 500, isCreated: false })
 

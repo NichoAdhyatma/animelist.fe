@@ -1,3 +1,4 @@
+import BackButton from "@/components/Util/BackButton";
 import { authUserSession } from "@/libs/auth";
 import { Avatar, Button, Link } from "@nextui-org/react";
 
@@ -13,11 +14,15 @@ export default async function Page() {
         className="w-32 h-32 mb-4"
       />
 
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         <Button as={Link} href="/user/dashboard/collection" color="primary">
           My Collection
         </Button>
         <Button>My Comment</Button>
+      </div>
+
+      <div>
+        <BackButton label="Exit dashboard" />
       </div>
     </div>
   );

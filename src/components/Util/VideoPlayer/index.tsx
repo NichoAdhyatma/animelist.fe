@@ -35,7 +35,7 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
         onPress={onOpen}
         startContent={<FaPlay />}
       >
-        Tonton Trailer
+        Trailer
       </Button>
       <Modal
         isOpen={isOpen}

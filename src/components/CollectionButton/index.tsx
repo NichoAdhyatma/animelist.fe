@@ -1,7 +1,8 @@
 "use client";
 
 import { addCollectionAnime, removeCollectionAnime } from "@/libs/fetcher";
-import { CollectionResponse } from "@/type/collection";
+import { AnimeType } from "@/type/anime";
+import { CollectionRequest, CollectionResponse } from "@/type/collection";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
@@ -9,12 +10,12 @@ import { IoMdAdd, IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 export default function CollectionButton({
   collection_id,
-  anime_mal_id,
+  anime,
   user_email,
   isCollected,
 }: {
   collection_id: number;
-  anime_mal_id: number;
+  anime: AnimeType;
   user_email: string;
   isCollected: boolean;
 }) {
@@ -27,11 +28,16 @@ export default function CollectionButton({
 
     let response: CollectionResponse;
 
-    const data = { anime_mal_id, user_email };
-
     switch (action) {
       case "add":
-        response = await addCollectionAnime(data);
+        const collectionRequest: CollectionRequest = {
+          anime_mal_id: anime.mal_id,
+          anime_image: anime.images.webp.large_image_url,
+          anime_title: anime.title,
+          user_email,
+        };
+
+        response = await addCollectionAnime(collectionRequest);
 
         setIsCreated(response.isCreated);
 
@@ -61,6 +67,7 @@ export default function CollectionButton({
           startContent={!isLoading && <IoMdCheckmarkCircleOutline />}
           isLoading={isLoading}
           onPress={() => handleOnClick("remove")}
+          className="font-semibold"
         >
           {isLoading ? "Loading..." : "Collected"}
         </Button>
@@ -72,6 +79,7 @@ export default function CollectionButton({
           startContent={!isLoading && <IoMdAdd />}
           color="warning"
           variant="flat"
+          className="font-semibold"
         >
           {isLoading ? "Loading..." : "Collection"}
         </Button>

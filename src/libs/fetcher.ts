@@ -1,6 +1,6 @@
 import { AnimeType, RecommendationAnimeType } from "@/type/anime";
 import { RecommendationAnimeResponse } from "@/type/animeResponse";
-import { CollectionResponse } from "@/type/collection";
+import { CollectionRequest, CollectionResponse } from "@/type/collection";
 import { redirect } from "next/navigation";
 
 export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } = {}): Promise<T> => {
@@ -35,7 +35,7 @@ export const getNestedAnimeResponse = async (
 }
 
 export const addCollectionAnime = async (
-  data: { anime_mal_id: number, user_email: string }
+  data: CollectionRequest
 ): Promise<CollectionResponse> => {
   const response: Response = await fetch("/api/v1/collection", { method: "POST", body: JSON.stringify(data) })
 
