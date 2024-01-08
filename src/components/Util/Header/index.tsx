@@ -11,7 +11,7 @@ export default function Header({
   linkLabel?: string;
 }) {
   return (
-    <div className="flex justify-between items-center w-full my-2">
+    <div className="flex justify-between items-center w-full mb-4">
       <h1 className="text-xl font-bold">{title}</h1>
       {linkLabel && (
         <Link showAnchorIcon isBlock href={href}>

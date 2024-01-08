@@ -2,7 +2,8 @@
 
 import { addCollectionAnime, removeCollectionAnime } from "@/libs/fetcher";
 import { AnimeType } from "@/type/anime";
-import { CollectionRequest, CollectionResponse } from "@/type/collection";
+import { CollectionRequest } from "@/type/collection";
+import { ApiResponse } from "@/type/response";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
@@ -26,7 +27,7 @@ export default function CollectionButton({
   const handleOnClick = async (action: string) => {
     setIsLoading(true);
 
-    let response: CollectionResponse;
+    let response: ApiResponse;
 
     switch (action) {
       case "add":

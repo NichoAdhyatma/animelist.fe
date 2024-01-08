@@ -18,7 +18,9 @@ export default async function Page() {
         <Button as={Link} href="/user/dashboard/collection" color="primary">
           My Collection
         </Button>
-        <Button>My Comment</Button>
+        <Button as={Link} href="/user/dashboard/comment">
+          My Comment
+        </Button>
       </div>
 
       <div>

@@ -28,7 +28,7 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 lg:static">
+    <>
       <Button
         color="danger"
         variant="solid"
@@ -61,6 +61,6 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 }

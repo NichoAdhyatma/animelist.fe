@@ -16,3 +16,13 @@ model Collection {
 
   @@unique([user_email, anime_mal_id])
 }
+
+model Comment {
+  id           Int      @id @default(autoincrement())
+  anime_mal_id Int
+  anime_title  String
+  user_email   String
+  comment      String
+  username     String
+  createdAt    DateTime @default(now()) 
+}

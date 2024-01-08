@@ -1,6 +1,8 @@
 import { AnimeType, RecommendationAnimeType } from "@/type/anime";
 import { RecommendationAnimeResponse } from "@/type/animeResponse";
-import { CollectionRequest, CollectionResponse } from "@/type/collection";
+import { CollectionRequest } from "@/type/collection";
+import { CommentRequest } from "@/type/comment";
+import { ApiResponse } from "@/type/response";
 import { redirect } from "next/navigation";
 
 export const get = async <T>(path: string, { signal }: { signal?: AbortSignal } = {}): Promise<T> => {
@@ -35,9 +37,12 @@ export const getNestedAnimeResponse = async (
 }
 
 export const addCollectionAnime = async (
-  data: CollectionRequest
-): Promise<CollectionResponse> => {
-  const response: Response = await fetch("/api/v1/collection", { method: "POST", body: JSON.stringify(data) })
+  collectionRequest: CollectionRequest
+): Promise<ApiResponse> => {
+  const response: Response = await fetch("/api/v1/collection", {
+    method: "POST",
+    body: JSON.stringify(collectionRequest)
+  })
 
   if (!response.ok) {
     return {
@@ -46,11 +51,14 @@ export const addCollectionAnime = async (
     }
   }
 
-  return await response.json() as CollectionResponse;
+  return await response.json() as ApiResponse;
 }
 
 export const removeCollectionAnime = async (id: number) => {
-  const response: Response = await fetch("/api/v1/collection", { method: "DELETE", body: JSON.stringify({ id }) })
+  const response: Response = await fetch("/api/v1/collection", {
+    method: "DELETE",
+    body: JSON.stringify({ id })
+  })
 
   if (!response.ok) {
     return {
@@ -59,5 +67,24 @@ export const removeCollectionAnime = async (id: number) => {
     }
   }
 
-  return await response.json() as CollectionResponse;
+  return await response.json() as ApiResponse;
+}
+
+export const addComment = async (commentRequest: CommentRequest) => {
+  const response: Response = await fetch("/api/v1/comment",
+    {
+      method: "POST",
+      body: JSON.stringify(commentRequest)
+    }
+  )
+
+  if (!response.ok) {
+    return {
+      status: response.status,
+      isCreated: false
+    }
+  }
+
+  return await response.json() as ApiResponse
+
 }

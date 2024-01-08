@@ -1,6 +1,7 @@
 import BackButton from "@/components/Util/BackButton";
 import CardAnime from "@/components/Util/CardAnime";
 import CardGridLayout from "@/components/Util/CardGridLayout";
+import Header from "@/components/Util/Header";
 import { authUserSession } from "@/libs/auth";
 import prismaSingleton from "@/libs/prisma";
 import { Button, Link } from "@nextui-org/react";
@@ -16,7 +17,7 @@ export default async function Page() {
     <div>
       <BackButton />
 
-      <h3 className="text-xl my-4 font-semibold">My Collection</h3>
+      <Header title="My Collection" />
       {collections.length > 0 ? (
         <CardGridLayout>
           {collections.map((collection, index) => (
