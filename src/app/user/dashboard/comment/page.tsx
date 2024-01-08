@@ -1,12 +1,12 @@
 import BackButton from "@/components/Util/BackButton";
 import Header from "@/components/Util/Header";
 import { authUserSession } from "@/libs/auth";
+import prismaSingleton from "@/libs/prisma";
 import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
-import React from "react";
 
 export default async function Page() {
   const user = await authUserSession();
-  const comments = await prisma?.comment.findMany({
+  const comments = await prismaSingleton.comment.findMany({
     where: {
       user_email: user?.email ?? "",
     },
