@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
+  Link,
 } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
 import { ThemeSwitcher } from "../ThemeSwitcher";
@@ -19,8 +20,8 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
       <DropdownTrigger>
         <Avatar
           isBordered
-          as="button"
-          className="transition-transform"
+          as={Link}
+          className="transition-transform cursor-pointer"
           src={user.image ?? ""}
         />
       </DropdownTrigger>

@@ -9,9 +9,7 @@ export default function AnimeList({ api }: { api: AnimeType[] | undefined }) {
       {api?.map((anime: AnimeType, index: number) => (
         <CardAnime
           key={index}
-          id={anime.mal_id}
-          title={anime.title}
-          src={anime.images.webp.large_image_url}
+          anime={anime}
         />
       ))}
     </CardGridLayout>

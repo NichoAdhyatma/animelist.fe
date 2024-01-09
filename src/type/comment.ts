@@ -3,5 +3,7 @@ export type CommentRequest = {
   anime_title: string,
   user_email: string,
   comment: string,
-  username: string
+  username: string,
+  createdAt: Date,
+
 }
