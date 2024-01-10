@@ -19,7 +19,6 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
     <Dropdown placement="bottom-end" backdrop="opaque">
       <DropdownTrigger>
         <Avatar
-          isBordered
           as={Link}
           className="transition-transform cursor-pointer"
           src={user.image ?? ""}

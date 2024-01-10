@@ -5,5 +5,4 @@ export type CommentRequest = {
   comment: string,
   username: string,
   createdAt: Date,
-
 }

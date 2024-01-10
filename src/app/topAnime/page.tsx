@@ -21,7 +21,7 @@ export default function Page() {
 
   useEffect(() => {
     fetchTopAnime();
-  }, [page]);
+  }, []);
 
   const countTotalPage = (total: number, per_page: number) =>
     Math.ceil(total / per_page);
@@ -36,7 +36,10 @@ export default function Page() {
 
       <Pagination
         initialPage={page}
-        onChange={setPage}
+        onChange={(page: number) => {
+          setPage(page);
+          fetchTopAnime();
+        }}
         total={countTotalPage(topAnime?.pagination.items.total ?? 25, 25)}
         variant="light"
         color="primary"

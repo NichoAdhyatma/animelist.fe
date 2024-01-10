@@ -86,5 +86,4 @@ export const addComment = async (commentRequest: CommentRequest) => {
   }
 
   return await response.json() as ApiResponse
-
 }
