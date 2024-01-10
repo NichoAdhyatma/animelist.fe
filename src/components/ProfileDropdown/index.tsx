@@ -40,12 +40,6 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
           Dashboard
         </DropdownItem>
         <DropdownItem
-          key="collection"
-          onClick={() => router.push("/user/dashboard/collection")}
-        >
-          Collection
-        </DropdownItem>
-        <DropdownItem
           onClick={() => router.push("/api/auth/signout")}
           key="logout"
           color="danger"

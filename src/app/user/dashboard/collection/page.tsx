@@ -23,7 +23,7 @@ export default async function Page() {
           {collections.map((collection, index) => (
             <CardAnime
               key={index}
-              id={collection.anime_mal_id}
+              mal_id={collection.anime_mal_id}
               title={collection.anime_title ?? "Anime Title"}
               src={
                 collection.anime_image ??

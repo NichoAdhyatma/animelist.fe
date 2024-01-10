@@ -42,6 +42,8 @@ export default function CommentInput({
       router.refresh();
     }
 
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     setIsLoading(false);
   };
 
@@ -59,7 +61,6 @@ export default function CommentInput({
 
       <Button
         color="primary"
-        size={"sm"}
         isLoading={isLoading}
         isDisabled={!Boolean(comment)}
         onClick={handleSendComment}
