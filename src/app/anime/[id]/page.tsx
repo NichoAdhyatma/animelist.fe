@@ -11,6 +11,8 @@ import prismaSingleton from "@/libs/prisma";
 import CommentBox from "@/components/Comment/CommentBox";
 import CommentInput from "@/components/Comment/CommentInput";
 import Header from "@/components/Util/Header";
+import { Rating } from "@smastrom/react-rating";
+import RatingInput from "@/components/Rating";
 
 export default async function Page({
   params: { id },
@@ -61,7 +63,8 @@ export default async function Page({
       </div>
 
       <div className="my-4">
-        <Header title="Comments" />
+        <Header title="Comments & Rating" />
+
         {user && (
           <CommentInput
             anime_mal_id={id}

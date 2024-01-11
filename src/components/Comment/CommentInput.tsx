@@ -6,6 +6,7 @@ import { Button, Textarea } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
 import { useState } from "react";
 import { BsFillSendFill } from "react-icons/bs";
+import RatingInput from "../Rating";
 
 export default function CommentInput({
   anime_mal_id,
@@ -20,6 +21,7 @@ export default function CommentInput({
 }) {
   const [comment, setComment] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [rating, setRating] = useState<number | undefined>(undefined);
   const router = useRouter();
 
   const handleSendComment = async (e: any) => {
@@ -31,6 +33,7 @@ export default function CommentInput({
       user_email,
       username,
       comment,
+      rating: Number(rating) ?? 0,
       createdAt: new Date(Date.now()),
     };
 
@@ -49,11 +52,13 @@ export default function CommentInput({
 
   return (
     <>
+      <RatingInput rating={rating ?? 0} setRating={setRating} />
+
       <Textarea
         label="Comment"
         value={comment}
         placeholder="Type ur comment here..."
-        description="Comment wisely"
+        description="*Fill comment (min 3 char) and rating to submit"
         maxLength={255}
         variant="bordered"
         onValueChange={setComment}
@@ -61,8 +66,9 @@ export default function CommentInput({
 
       <Button
         color="primary"
+        className="my-2"
         isLoading={isLoading}
-        isDisabled={!Boolean(comment)}
+        isDisabled={comment.length < 3 || !Boolean(rating)}
         onClick={handleSendComment}
         startContent={!isLoading && <BsFillSendFill />}
       >

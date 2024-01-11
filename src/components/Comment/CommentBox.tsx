@@ -1,6 +1,6 @@
 import prismaSingleton from "@/libs/prisma";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
-import { formatDistanceToNow } from "date-fns";
+import CardComment from "../Util/CardComment";
+import { Button } from "@nextui-org/react";
 
 export default async function CommentBox({
   anime_mal_id,
@@ -18,15 +18,9 @@ export default async function CommentBox({
 
   return (
     <div className="flex flex-col gap-4">
-      {comments.map((comment, index) => (
-        <Card key={index}>
-          <CardHeader>{comment.username}</CardHeader>
-          <CardBody>{comment.comment}</CardBody>
-          <CardFooter className="gap-4 justify-end text-tiny">
-            {formatDistanceToNow(comment.createdAt, { addSuffix: true })}
-          </CardFooter>
-        </Card>
-      ))}
+      {comments.length > 0 ? comments.map((comment, index) => (
+        <CardComment index={index} comment={comment} />
+      )) : <div className="text-center">Empty here ... 🚀</div>}
     </div>
   );
 }

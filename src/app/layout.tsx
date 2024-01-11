@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import '@smastrom/react-rating/style.css'
 import { Providers } from "./providers";
 import NavbarComponent from "../components/Navbar";
 import UserActionButton from "@/components/Navbar/UserActionButton";

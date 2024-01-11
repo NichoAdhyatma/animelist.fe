@@ -4,5 +4,12 @@ export type CommentRequest = {
   user_email: string,
   comment: string,
   username: string,
+  rating: number,
   createdAt: Date,
 }
+
+export type Comment = {
+  comment: string;
+  username: string;
+  createdAt: Date;
+};
