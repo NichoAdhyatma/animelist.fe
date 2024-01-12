@@ -24,7 +24,8 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
           src={user.image ?? ""}
         />
       </DropdownTrigger>
-      <DropdownMenu aria-label="Profile Actions" variant="flat">
+      <DropdownMenu aria-label="Profile Actions" variant="solid">
+
         <DropdownItem key="profile" className="h-14 gap-2" isReadOnly>
           <p className="font-semibold">Signed in as</p>
           <p className="font-semibold">{user.email}</p>
@@ -34,14 +35,14 @@ export default function ProfileDropdown({ user }: { user: AuthUser }) {
         </DropdownItem>
         <DropdownItem
           key="dashboard"
-          onClick={() => router.push("/user/dashboard")}
+          onPress={() => router.push("/user/dashboard")}
         >
           Dashboard
         </DropdownItem>
         <DropdownItem
-          onClick={() => router.push("/api/auth/signout")}
           key="logout"
           color="danger"
+          onPress={() => router.push("/api/auth/signout")}
         >
           Log Out
         </DropdownItem>

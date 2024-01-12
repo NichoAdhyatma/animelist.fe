@@ -15,8 +15,6 @@ export default function Page() {
   const fetchTopAnime = async () => {
     const topAnime = await get<AnimeResponse>(`/top/anime?page=${page}`);
     setTopAnime(topAnime);
-
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -41,7 +39,7 @@ export default function Page() {
         variant="light"
         color="primary"
         className="mt-4"
-        boundaries={3}
+        boundaries={10}
       />
     </>
   );

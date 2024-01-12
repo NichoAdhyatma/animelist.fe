@@ -37,6 +37,7 @@ export default function VideoPlayer({ videoId }: { videoId: string }) {
       >
         Trailer
       </Button>
+
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

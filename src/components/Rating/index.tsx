@@ -10,9 +10,11 @@ import {
 export default function RatingInput({
   rating,
   setRating,
+  readOnly,
 }: {
-  rating: number;
-  setRating: RatingChange;
+  rating?: number;
+  setRating?: RatingChange;
+  readOnly?: boolean;
 }) {
   const ratingStyle: ItemStyles = {
     itemShapes: RoundedStar,
@@ -23,12 +25,13 @@ export default function RatingInput({
   return (
     <Rating
       isRequired
+      readOnly={readOnly}
       style={{ maxWidth: 150 }}
-      value={rating}
+      value={rating ?? 0}
       onChange={setRating}
       itemStyles={ratingStyle}
       radius="full"
-      className="mb-4"
+      className="my-4"
     />
   );
 }

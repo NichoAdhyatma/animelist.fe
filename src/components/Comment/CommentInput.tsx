@@ -1,6 +1,6 @@
 "use client";
 
-import { addComment } from "@/libs/fetcher";
+import { addComment, updateComment } from "@/libs/fetcher";
 import { CommentRequest } from "@/type/comment";
 import { Button, Textarea } from "@nextui-org/react";
 import { useRouter } from "next-nprogress-bar";
@@ -8,44 +8,46 @@ import { useState } from "react";
 import { BsFillSendFill } from "react-icons/bs";
 import RatingInput from "../Rating";
 
+interface CommentInputProps {
+  props: CommentRequest;
+  isCreate?: boolean;
+  onClose?: () => void;
+}
+
 export default function CommentInput({
-  anime_mal_id,
-  user_email,
-  username,
-  anime_title,
-}: {
-  anime_mal_id: number;
-  anime_title: string;
-  user_email: string;
-  username: string;
-}) {
-  const [comment, setComment] = useState<string>("");
+  props,
+  isCreate = true,
+  onClose = () => {},
+}: CommentInputProps) {
+  const [comment, setComment] = useState<string>(props.comment);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [rating, setRating] = useState<number | undefined>(undefined);
+  const [rating, setRating] = useState<number | undefined>(props?.rating);
   const router = useRouter();
 
-  const handleSendComment = async (e: any) => {
+  const handleSendComment = async () => {
     setIsLoading(true);
 
     const commentRequest: CommentRequest = {
-      anime_mal_id: Number(anime_mal_id),
-      anime_title,
-      user_email,
-      username,
+      id: props.id,
+      anime_mal_id: Number(props.anime_mal_id),
+      anime_title: props.anime_title,
+      user_email: props.user_email,
+      username: props.username,
       comment,
-      rating: Number(rating) ?? 0,
-      createdAt: new Date(Date.now()),
+      rating: Number(rating),
     };
 
-    const commentResponse = await addComment(commentRequest);
-
-    if (commentResponse.isCreated) {
-      setComment("");
-
-      router.refresh();
-    }
+    const commentResponse = isCreate
+      ? await addComment(commentRequest)
+      : await updateComment(commentRequest);
 
     await new Promise((resolve) => setTimeout(resolve, 500));
+
+    onClose();
+
+    if (commentResponse.isCreated) {
+      router.refresh();
+    }
 
     setIsLoading(false);
   };
@@ -69,7 +71,7 @@ export default function CommentInput({
         className="my-2"
         isLoading={isLoading}
         isDisabled={comment.length < 3 || !Boolean(rating)}
-        onClick={handleSendComment}
+        onPress={handleSendComment}
         startContent={!isLoading && <BsFillSendFill />}
       >
         Comment

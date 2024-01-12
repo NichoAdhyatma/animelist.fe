@@ -87,3 +87,21 @@ export const addComment = async (commentRequest: CommentRequest) => {
 
   return await response.json() as ApiResponse
 }
+
+export const updateComment = async (commentRequest: CommentRequest) => {
+  const response: Response = await fetch("/api/v1/comment",
+    {
+      method: "PATCH",
+      body: JSON.stringify(commentRequest)
+    }
+  )
+
+  if (!response.ok) {
+    return {
+      status: response.status,
+      isCreated: false
+    }
+  }
+
+  return await response.json() as ApiResponse
+}

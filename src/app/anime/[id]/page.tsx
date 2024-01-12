@@ -11,8 +11,8 @@ import prismaSingleton from "@/libs/prisma";
 import CommentBox from "@/components/Comment/CommentBox";
 import CommentInput from "@/components/Comment/CommentInput";
 import Header from "@/components/Util/Header";
-import { Rating } from "@smastrom/react-rating";
-import RatingInput from "@/components/Rating";
+import CardComment from "@/components/Util/CardComment";
+import { CommentRequest } from "@/type/comment";
 
 export default async function Page({
   params: { id },
@@ -26,6 +26,18 @@ export default async function Page({
   const collection = await prismaSingleton.collection.findFirst({
     where: { user_email: user?.email ?? "", anime_mal_id: Number(id) },
   });
+
+  const comment = await prismaSingleton.comment.findFirst({
+    where: { user_email: user?.email ?? "", anime_mal_id: Number(id) },
+  });
+
+  const commentInputProps: CommentRequest = {
+    anime_mal_id: id,
+    anime_title: data.title,
+    username: user?.name ?? "",
+    user_email: user?.email ?? "",
+    comment: "",
+  };
 
   return (
     <div className="p-2">
@@ -64,15 +76,9 @@ export default async function Page({
 
       <div className="my-4">
         <Header title="Comments & Rating" />
+        {user && comment && <CardComment comment={comment} />}
 
-        {user && (
-          <CommentInput
-            anime_mal_id={id}
-            anime_title={data.title}
-            username={user?.name ?? ""}
-            user_email={user?.email ?? ""}
-          />
-        )}
+        {user && !comment && <CommentInput props={commentInputProps} />}
       </div>
 
       <CommentBox anime_mal_id={id} />

@@ -24,6 +24,6 @@ model Comment {
   user_email   String
   comment      String
   username     String
-  rating       Float @default(0)
+  rating       Int @default(0)
   createdAt    DateTime @default(now()) 
 }
